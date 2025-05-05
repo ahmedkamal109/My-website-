@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حكاية وتطوير - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>مرحباً بك في "حكاية وتطوير"</h1>
+        <p>اكتب قصتك وطور فكرتك مع "بيومي".</p>
+        <button id="writeStoryBtn">اكتب قصة جديدة</button>
+    </header>
+
+    <main>
+        <section id="storyFeed">
+            <h2>القصص الأخيرة:</h2>
+            <!-- القصص ستظهر هنا -->
+            <div class="story-card">
+                <h3>قصة أحمد والمغامرة الكبيرة</h3>
+                <p>في يوم من الأيام، قرر أحمد أن يذهب في مغامرة...</p>
+                <button class="chatWithBotBtn">تطوير الفكرة مع بيومي</button>
+            </div>
+            <div class="story-card">
+                <h3>رحلة سارة إلى المجهول</h3>
+                <p>سارة فتاة طموحة، قررت أن تحقق حلمها...</p>
+                <button class="chatWithBotBtn">تطوير الفكرة مع بيومي</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 حكاية وتطوير | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دردشة مع بيومي</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>شات تطوير الفكرة مع بيومي</h1>
+    </header>
+
+    <main>
+        <section id="chatbox">
+            <div class="chat-container">
+                <!-- الرسائل ستظهر هنا -->
+            </div>
+            <textarea id="userMessage" placeholder="اكتب فكرتك هنا..."></textarea>
+            <button id="sendMessageBtn">إرسال</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 حكاية وتطوير | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+الخطوة الثالثة: كود JavaScript للـ Chatbot "بيومي"
+
+// الردود من بيومي
+const responses = {
+    "المغامرة": "هل فكرت في إضافة شخصية غامضة تساعد البطل في مغامرته؟",
+    "الحب": "ربما يمكنك تطوير علاقة بين البطل والشخصية الثانوية لجعل القصة أكثر عمقاً.",
+    "الصراع": "هل فكرت في إضافة صراع داخلي للبطل يجعله يواجه تحديات أكبر؟",
+    "الخيال": "ماذا لو أضفت بعداً خارقاً للطبيعة لتجعل القصة أكثر إثارة؟"
+};
+
+document.getElementById("sendMessageBtn").addEventListener("click", function() {
+    let userMessage = document.getElementById("userMessage").value;
+    if (userMessage.trim() !== "") {
+        addMessageToChat("أنت: " + userMessage);
+
+        // الرد من بيومي
+        let botResponse = "بيومي: " + getBotResponse(userMessage);
+        addMessageToChat(botResponse);
+    }
+});
+
+function addMessageToChat(message) {
+    let chatContainer = document.querySelector(".chat-container");
+    let newMessage = document.createElement("div");
+    newMessage.textContent = message;
+    chatContainer.appendChild(newMessage);
+}
+
+function getBotResponse(userMessage) {
+    for (let key in responses) {
+        if (userMessage.includes(key)) {
+            return responses[key];
+        }
+    }
+    return "بيومي: يبدو أن هذه فكرة مثيرة، هل لديك تفاصيل أكثر؟";
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#storyFeed {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-card {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.chat-container {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
